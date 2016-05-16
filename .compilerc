@@ -1,0 +1,21 @@
+{
+  "env": {
+    "development": {
+      "application/javascript": {
+	    "presets": ["es2015"],
+	    "plugins": ["transform-class-properties"],
+        "sourceMaps": "inline"
+      },
+      "text/less": {
+        "dumpLineNumbers": "comments"
+      }
+    },
+    "production": {
+      "application/javascript": {
+	    "presets": ["es2015"],
+	    "plugins": ["transform-class-properties"],
+        "sourceMaps": "none"
+      }
+    }
+  }
+}

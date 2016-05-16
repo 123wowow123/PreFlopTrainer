@@ -1,0 +1,94 @@
+
+<div class="container" nv-file-drop uploader="vm.uploader">
+
+  <div class="row">
+
+    <div class="col-lg-6">
+
+      <div class="poker-table">
+        <img class="poker-table-img" src="assets/images/Texas_Holdem_Poker_Table.jpg"/>
+        <button class="utg placement" ng-class="{'rfi-active':vm.activeRFI('UTG'), 'position-active':vm.activePosition('UTG')}">UTG</button>
+        <button class="mp placement" ng-class="{'rfi-active':vm.activeRFI('MP'), 'position-active':vm.activePosition('MP')}">MP</button>
+        <button class="co placement" ng-class="{'rfi-active':vm.activeRFI('CO'), 'position-active':vm.activePosition('CO')}">CO</button>
+        <button class="butn placement" ng-class="{'rfi-active':vm.activeRFI('BTN'), 'position-active':vm.activePosition('BTN')}">BTN</button>
+        <button class="sb placement" ng-class="{'rfi-active':vm.activeRFI('SB'), 'position-active':vm.activePosition('SB')}">SB</button>
+        <button class="bb placement" ng-class="{'rfi-active':vm.activeRFI('BB'), 'position-active':vm.activePosition('BB')}">BB</button>
+
+        <button class="d placement" >D</button>
+      </div>
+    </div>
+    <div class="col-lg-6">
+
+      <form class="form-horizontal">
+
+        <div class="form-group">
+          <div class="col-lg-12">
+            <label>Raise Size</label>
+            <button ng-click="vm.RS2X()">2x</button>
+            <button ng-click="vm.RS25X()">2.5x</button>
+            <button ng-click="vm.RS3X()">3x</button>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <div class="col-lg-12">
+            <label>RFI Position</label>
+            <button ng-click="vm.RFIUTG()" ng-disabled="vm.activeRFI('UTG') || vm.activePosition('UTG')">Hero</button>
+            <button ng-click="vm.RFIMP()" ng-disabled="vm.activeRFI('MP') || vm.activePosition('MP')">Villain</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-12">
+            <label>Hero Position</label>
+            <button ng-click="vm.PositionUTG()" ng-disabled="vm.activeRFI('UTG') || vm.activePosition('UTG')">UTG</button>
+            <button ng-click="vm.PositionMP()" ng-disabled="vm.activeRFI('MP') || vm.activePosition('MP')">MP</button>
+            <button ng-click="vm.PositionCO()" ng-disabled="vm.activeRFI('CO') || vm.activePosition('CO')">CO</button>
+            <button ng-click="vm.PositionBTN()" ng-disabled="vm.activeRFI('BTN') || vm.activePosition('BTN')">BTN</button>
+            <button ng-click="vm.PositionSB()" ng-disabled="vm.activeRFI('SB') || vm.activePosition('SB')">SB</button>
+            <button ng-click="vm.PositionBB()" ng-disabled="vm.activeRFI('BB') || vm.activePosition('BB')">BB</button>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-12">
+            <label>Villain Position</label>
+            <button ng-click="vm.PositionUTG()" ng-disabled="vm.activeRFI('UTG') || vm.activePosition('UTG')">UTG</button>
+            <button ng-click="vm.PositionMP()" ng-disabled="vm.activeRFI('MP') || vm.activePosition('MP')">MP</button>
+            <button ng-click="vm.PositionCO()" ng-disabled="vm.activeRFI('CO') || vm.activePosition('CO')">CO</button>
+            <button ng-click="vm.PositionBTN()" ng-disabled="vm.activeRFI('BTN') || vm.activePosition('BTN')">BTN</button>
+            <button ng-click="vm.PositionSB()" ng-disabled="vm.activeRFI('SB') || vm.activePosition('SB')">SB</button>
+            <button ng-click="vm.PositionBB()" ng-disabled="vm.activeRFI('BB') || vm.activePosition('BB')">BB</button>
+          </div>
+        </div>
+
+        <div class="btn-group" data-toggle="buttons">
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option1" autocomplete="off" checked> Radio 1 (preselected)
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option2" autocomplete="off"> Radio 2
+          </label>
+          <label class="btn btn-primary">
+            <input type="radio" name="options" id="option3" autocomplete="off"> Radio 3
+          </label>
+        </div>
+
+        <div class="btn-group">
+          <label class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Left'" uncheckable>Left</label>
+          <label class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable>Middle</label>
+          <label class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Right'" uib-uncheckable="uncheckable">Right</label>
+        </div>
+
+        <div file-change="vm.inputImageChange($event, files)" >drop here!</div>
+
+        <div class="form-group">
+          <h3>Preflop Advice</h3>
+          <img ng-src="vm.chart"/>
+        </div>
+
+        <form>
+
+        </div>
+      </div>
+
+    </div>
+

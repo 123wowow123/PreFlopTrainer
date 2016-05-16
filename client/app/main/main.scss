@@ -1,0 +1,102 @@
+.thing-form {
+  margin: 20px 0;
+}
+
+#banner {
+  border-bottom: none;
+  margin-top: -20px;
+}
+
+#banner h1 {
+  font-size: 60px;
+  line-height: 1;
+  letter-spacing: -1px;
+}
+
+.hero-unit {
+  position: relative;
+  padding: 30px 15px;
+  color: #F5F5F5;
+  text-align: center;
+  text-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
+  background: #4393B9;
+}
+
+.navbar-text {
+  margin-left: 15px;
+}
+
+
+.poker-table{
+  position: relative;
+  display: inline-block;
+  width: 450px;
+  margin: 25px 15px;
+  .poker-table-img{
+    // height: 50%;
+    width: 100%;
+  }
+  .placement{
+    height: 50px;
+    width: 80px;
+    border-radius: 30px;
+    position: absolute;
+    border: none;
+    outline: none;
+    &:active{
+      background-color: gray;
+    }
+  }
+  .utg{
+    left: 50%;
+    top: 0%;
+    margin-left: -40px;
+    margin-top: -25px;
+  }
+  .mp{
+    left: 90%;
+    top: 15%;
+    margin-left: -40px;
+    margin-top: -25px;
+  }
+  .co{
+    left: 90%;
+    top: 85%;
+    margin-left: -40px;
+    margin-top: -25px;
+  }
+  .butn{
+    left: 50%;
+    top: 100%;
+    margin-left: -40px;
+    margin-top: -25px;
+  }
+  .sb{
+    left: 10%;
+    top: 85%;
+    margin-left: -40px;
+    margin-top: -25px;
+  }
+  .bb{
+    left: 10%;
+    top: 15%;
+    margin-left: -40px;
+    margin-top: -25px;
+  }
+  .d{
+    left: 40%;
+    top: 78%;
+    margin-left: -12x;
+    margin-top: -12px;
+    width: 24px;
+    height: 24px;
+    background-color: white;
+  }
+
+  .rfi-active{
+    background-color: green;
+  }  
+  .position-active{
+    background-color: orange;
+  }
+}
