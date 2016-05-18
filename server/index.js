@@ -23,10 +23,12 @@ require('electron-debug')();
 let mainWindow;
 let db;
 
+//debugger;
+
 function onClosed() {
 	// dereference the window
 	// for multiple windows store them in an array
-	saveDB(db, dbName);
+	//saveDB(db, dbName);
 	mainWindow = null;
 	db = null;
 }
@@ -48,6 +50,11 @@ function createDB(dbName){
 	// Load the db
 	//var db = new SQL.Database(filebuffer);
 	var db = new SQL.Database();
+
+	// Execute some sql
+	var sqlstr = "CREATE TABLE PreFlopImage (id nvarchar, imagePath nvarchar);";
+	db.run(sqlstr); // Run the query without returning anything
+
 	return db;
 }
 
@@ -71,6 +78,46 @@ function fileExists(path) {
 
     console.log("Exception fs.statSync (" + path + "): " + e);
     throw e; // something else went wrong, we don't have rights, ...
+  }
+}
+
+function getImagePath(key, cb){
+	var stmt = db.prepare("SELECT * FROM PreFlopImage WHERE id=:key");
+	var result = stmt.getAsObject({':key' : key});
+	console.log(result); // Will print {a:1, b:'world'}
+	stmt.free();
+	if(cb){
+		cb({imagePath: result})
+	}
+}
+
+function addImagePath(key, imagePath){
+	var stmt = db.prepare("INSERT INTO PreFlopImage VALUES (:key, :imagePath)"); //////insert or update
+	stmt.bind({':key' : key, ':imagePath': imagePath});
+	var result = stmt.step();
+	stmt.free();
+	console.log(key, imagePath);
+	getImagePath(key); ///
+}
+
+function copyFile(source, target, cb) {
+  var cbCalled = false;
+
+  var rd = fs.createReadStream(source);
+  rd.on("error", done);
+
+  var wr = fs.createWriteStream(target);
+  wr.on("error", done);
+  wr.on("close", function(ex) {
+    done();
+  });
+  rd.pipe(wr);
+
+  function done(err) {
+    if (!cbCalled) {
+      cb(err);
+      cbCalled = true;
+    }
   }
 }
 
@@ -101,11 +148,27 @@ app.on('ready', () => {
 
 // In main process.
 const ipcMain = require('electron').ipcMain;
-ipcMain.on('asynchronous-message', function(event, arg) {
+ipcMain.on('upload-image-async', function(event, arg) {
   console.log(arg);  // prints "ping"
-  event.sender.send('asynchronous-reply', 'pong');
+
+  var msg = JSON.parse(arg);
+  var target = path.resolve('uploads/123.png');
+  function cb(){
+  	event.sender.send('upload-image-async-response', target);
+  }
+  copyFile(msg.imageSourcePath, target, cb);
+  addImagePath(msg.key, target);
 });
 
+ipcMain.on('get-image-async', function(event, arg) {
+  console.log(arg);  // prints "ping"
+
+  function cb(arg){
+  	var response = JSON.stringify(arg);
+  	event.sender.send('get-image-async-response', response);
+  }
+  getImagePath(arg, cb);
+});
 
 
 function registerProtocol() {

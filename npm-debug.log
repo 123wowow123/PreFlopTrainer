@@ -8,7 +8,7 @@
 7 verbose unsafe-perm in lifecycle true
 8 info prefloptrainer@0.0.0 Failed to exec start script
 9 verbose stack Error: prefloptrainer@0.0.0 start: `electron .`
-9 verbose stack Exit status 1
+9 verbose stack Exit status 7
 9 verbose stack     at EventEmitter.<anonymous> (/usr/local/lib/node_modules/npm/lib/utils/lifecycle.js:217:16)
 9 verbose stack     at emitTwo (events.js:87:13)
 9 verbose stack     at EventEmitter.emit (events.js:172:7)
@@ -25,7 +25,7 @@
 15 error npm  v2.15.1
 16 error code ELIFECYCLE
 17 error prefloptrainer@0.0.0 start: `electron .`
-17 error Exit status 1
+17 error Exit status 7
 18 error Failed at the prefloptrainer@0.0.0 start script 'electron .'.
 18 error This is most likely a problem with the prefloptrainer package,
 18 error not with npm itself.

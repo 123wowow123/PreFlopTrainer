@@ -27,3 +27,7 @@ Builds the app for OS X, Linux, and Windows, using [electron-packager](https://g
 ## License
 
 MIT © [123wowow123](http://n/A)
+
+
+ToDo:
+save path in db with button combination

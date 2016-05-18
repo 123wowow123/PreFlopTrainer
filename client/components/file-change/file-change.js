@@ -1,11 +1,45 @@
 angular
 .module('yourModule', [])
-.directive('fileChange', function($parse) {
+.directive('fileChange', function($parse, $document) {
 
   return {
     //require: 'ngModel',
     restrict: 'A',
     link: function ($scope, element, attrs) {
+
+        $document.bind('drop dragover', function (e) {
+            e.preventDefault();
+        });
+
+        $document.bind('dragover', function (e) {
+            var dropZone = element,
+                timeout = window.dropZoneTimeout;
+            if (!timeout) {
+                dropZone.addClass('in');
+            } else {
+                clearTimeout(timeout);
+            }
+            var found = false,
+                node = e.target;
+            do {
+                if (node === dropZone[0]) {
+                    found = true;
+                    break;
+                }
+                node = node.parentNode;
+            } while (node != null);
+            if (found) {
+                dropZone.addClass('hover');
+            } else {
+                dropZone.removeClass('hover');
+            }
+            window.dropZoneTimeout = setTimeout(function () {
+                window.dropZoneTimeout = null;
+                dropZone.removeClass('in hover');
+            }, 100);
+        });
+
+
 
         // Get the function provided in the file-change attribute.
         // Note the attribute has become an angular expression,

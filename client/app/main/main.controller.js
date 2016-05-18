@@ -1,5 +1,7 @@
 'use strict';
 
+const {ipcRenderer} = require('electron');
+
 (function() {
 
   class MainController {
@@ -7,17 +9,26 @@
     constructor($http, $scope) {
       this.combination = {};
       this.$scope = $scope;
-      }
 
+      ipcRenderer.on('get-image-async', (event, arg) => {
+        console.log(arg); // prints "pong"
+        chart = arg
+      });
+      ipcRenderer.on('upload-image-async-response', (event, arg) => {
+        console.log(arg); // prints "pong"
+      });
 
+    }
 
-      activeRFI(templatePosition){
-        return templatePosition === this.combination.RFI;
-      }
+    chart = '../uploads/123.png';
 
-      activePosition(templatePosition){
-        return templatePosition === this.combination.position;
-      }
+    activeRFI(templatePosition){
+      return templatePosition === this.combination.RFI;
+    }
+
+    activePosition(templatePosition){
+      return templatePosition === this.combination.position;
+    }
 
     //Raise Size
     RS2X(){
@@ -70,8 +81,24 @@
       this.combination.position = 'BB';
     }
 
+    CombinationChanged(){
+      var combination = JSON.stringify(this.combination);
+      console.log(combination);
+      this.getCurrentImage(combination);
+    }
+
     inputImageChange(e){
-      var file = e.dataTransfer.files[0];
+      var combination = JSON.stringify(this.combination);
+      var msg = {
+        key: combination,
+        imageSourcePath: e.dataTransfer.files[0].path
+      }
+      console.log(msg);
+      ipcRenderer.send('upload-image-async', JSON.stringify(msg));
+    }
+
+    getCurrentImage(hash){
+      ipcRenderer.send('get-image-async-async', hash);
     }
 
   }
