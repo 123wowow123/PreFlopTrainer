@@ -10,75 +10,107 @@ const {ipcRenderer} = require('electron');
       this.combination = {};
       this.$scope = $scope;
 
-      ipcRenderer.on('get-image-async', (event, arg) => {
-        console.log(arg); // prints "pong"
-        chart = arg
+      ipcRenderer.on('get-image-async-response', (event, arg) => {
+        var response = JSON.parse(arg);
+        console.log(response); // prints "pong"
+        console.log(response.imagePath); // prints "pong"
+        this.chart = response.imagePath;
       });
       ipcRenderer.on('upload-image-async-response', (event, arg) => {
-        console.log(arg); // prints "pong"
+        var response = JSON.parse(arg);
+        console.log(response); // prints "pong"
       });
 
     }
 
     chart = '../uploads/123.png';
 
+    activeRaiseSize(templatePosition){
+      return templatePosition === this.combination.raiseSize;
+    }
+
     activeRFI(templatePosition){
       return templatePosition === this.combination.RFI;
     }
 
-    activePosition(templatePosition){
-      return templatePosition === this.combination.position;
+    activeHero(templatePosition){
+      return templatePosition === this.combination.HeroPosition;
+    }
+
+    activeVillian(templatePosition){
+      return templatePosition === this.combination.VillainPosition;
     }
 
     //Raise Size
     RS2X(){
       this.combination.raiseSize = 2;
-      this.combination.RFI = 'UTG';
     }
 
-    RFIMP(){
-      this.combination.RFI = 'MP';
+    RS25X(){
+      this.combination.raiseSize = 2.5;
     }
 
-    RFICO(){
-      this.combination.RFI = 'CO';
+    RS3X(){
+      this.combination.raiseSize = 3;
     }
 
-    RFIBTN(){
-      this.combination.RFI = 'BTN';
+    //RFI Position
+    HeroPosition(){
+      this.combination.RFI = 'Hero';
     }
 
-    RFISB(){
-      this.combination.RFI = 'SB';
+    VillainPosition(){
+      this.combination.RFI = 'Villain';
     }
 
-    RFIBB(){
-      this.combination.RFI = 'BB';
+    //Hero Position
+    HeroUTG(){
+      this.combination.HeroPosition = 'UTG';
     }
 
-    //Your Position
-    PositionUTG(){
-      this.combination.position = 'UTG';
+    HeroMP(){
+      this.combination.HeroPosition = 'MP';
     }
 
-    PositionMP(){
-      this.combination.position = 'MP';
+    HeroCO(){
+      this.combination.HeroPosition = 'CO';
     }
 
-    PositionCO(){
-      this.combination.position = 'CO';
+    HeroBTN(){
+      this.combination.HeroPosition = 'BTN';
     }
 
-    PositionBTN(){
-      this.combination.position = 'BTN';
+    HeroSB(){
+      this.combination.HeroPosition = 'SB';
     }
 
-    PositionSB(){
-      this.combination.position = 'SB';
+    HeroBB(){
+      this.combination.HeroPosition = 'BB';
     }
 
-    PositionBB(){
-      this.combination.position = 'BB';
+    //Villain Position
+    VillainUTG(){
+      this.combination.VillainPosition = 'UTG';
+    }
+
+    VillainMP(){
+      this.combination.VillainPosition = 'MP';
+    }
+
+    VillainCO(){
+      this.combination.VillainPosition = 'CO';
+    }
+
+    VillainBTN(){
+      this.combination.VillainPosition = 'BTN';
+    }
+
+    VillainSB(){
+      this.combination.VillainPosition = 'SB';
+    }
+
+    VillainBB(){
+      this.combination.VillainPosition = 'BB';
     }
 
     CombinationChanged(){
@@ -98,7 +130,7 @@ const {ipcRenderer} = require('electron');
     }
 
     getCurrentImage(hash){
-      ipcRenderer.send('get-image-async-async', hash);
+      ipcRenderer.send('get-image-async', hash);
     }
 
   }

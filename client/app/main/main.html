@@ -7,12 +7,12 @@
 
       <div class="poker-table">
         <img class="poker-table-img" src="assets/images/Texas_Holdem_Poker_Table.jpg"/>
-        <button class="utg placement" ng-class="{'rfi-active':vm.activeRFI('UTG'), 'position-active':vm.activePosition('UTG')}">UTG</button>
-        <button class="mp placement" ng-class="{'rfi-active':vm.activeRFI('MP'), 'position-active':vm.activePosition('MP')}">MP</button>
-        <button class="co placement" ng-class="{'rfi-active':vm.activeRFI('CO'), 'position-active':vm.activePosition('CO')}">CO</button>
-        <button class="butn placement" ng-class="{'rfi-active':vm.activeRFI('BTN'), 'position-active':vm.activePosition('BTN')}">BTN</button>
-        <button class="sb placement" ng-class="{'rfi-active':vm.activeRFI('SB'), 'position-active':vm.activePosition('SB')}">SB</button>
-        <button class="bb placement" ng-class="{'rfi-active':vm.activeRFI('BB'), 'position-active':vm.activePosition('BB')}">BB</button>
+        <button class="utg placement" ng-class="{'rfi-active':vm.activeHero('UTG'), 'position-active':vm.activeVillian('UTG')}">UTG</button>
+        <button class="mp placement" ng-class="{'rfi-active':vm.activeHero('MP'), 'position-active':vm.activeVillian('MP')}">MP</button>
+        <button class="co placement" ng-class="{'rfi-active':vm.activeHero('CO'), 'position-active':vm.activeVillian('CO')}">CO</button>
+        <button class="butn placement" ng-class="{'rfi-active':vm.activeHero('BTN'), 'position-active':vm.activeVillian('BTN')}">BTN</button>
+        <button class="sb placement" ng-class="{'rfi-active':vm.activeHero('SB'), 'position-active':vm.activeVillian('SB')}">SB</button>
+        <button class="bb placement" ng-class="{'rfi-active':vm.activeHero('BB'), 'position-active':vm.activeVillian('BB')}">BB</button>
 
         <button class="d placement" >D</button>
       </div>
@@ -24,41 +24,55 @@
         <div class="form-group">
           <div class="col-lg-12">
             <label>Raise Size</label>
-            <button ng-click="vm.RS2X()">2x</button>
-            <button ng-click="vm.RS25X()">2.5x</button>
-            <button ng-click="vm.RS3X()">3x</button>
+            <button ng-click="vm.RS2X()" ng-disabled="vm.activeRaiseSize(2)">2x</button>
+            <button ng-click="vm.RS25X()" ng-disabled="vm.activeRaiseSize(2.5)">2.5x</button>
+            <button ng-click="vm.RS3X()" ng-disabled="vm.activeRaiseSize(3)">3x</button>
           </div>
         </div>
 
         <div class="form-group">
           <div class="col-lg-12">
             <label>RFI Position</label>
-            <button ng-click="vm.RFIUTG()" ng-disabled="vm.activeRFI('UTG') || vm.activePosition('UTG')">Hero</button>
-            <button ng-click="vm.RFIMP()" ng-disabled="vm.activeRFI('MP') || vm.activePosition('MP')">Villain</button>
+            <button ng-click="vm.HeroPosition()" ng-disabled="vm.activeRFI('Hero')">Hero</button>
+            <button ng-click="vm.VillainPosition()" ng-disabled="vm.activeRFI('Villain')">Villain</button>
           </div>
         </div>
         <div class="form-group">
           <div class="col-lg-12">
             <label>Hero Position</label>
-            <button ng-click="vm.PositionUTG()" ng-disabled="vm.activeRFI('UTG') || vm.activePosition('UTG')">UTG</button>
-            <button ng-click="vm.PositionMP()" ng-disabled="vm.activeRFI('MP') || vm.activePosition('MP')">MP</button>
-            <button ng-click="vm.PositionCO()" ng-disabled="vm.activeRFI('CO') || vm.activePosition('CO')">CO</button>
-            <button ng-click="vm.PositionBTN()" ng-disabled="vm.activeRFI('BTN') || vm.activePosition('BTN')">BTN</button>
-            <button ng-click="vm.PositionSB()" ng-disabled="vm.activeRFI('SB') || vm.activePosition('SB')">SB</button>
-            <button ng-click="vm.PositionBB()" ng-disabled="vm.activeRFI('BB') || vm.activePosition('BB')">BB</button>
+            <button ng-click="vm.HeroUTG()" ng-disabled="vm.activeHero('UTG') || vm.activeVillian('UTG')">UTG</button>
+            <button ng-click="vm.HeroMP()" ng-disabled="vm.activeHero('MP') || vm.activeVillian('MP')">MP</button>
+            <button ng-click="vm.HeroCO()" ng-disabled="vm.activeHero('CO') || vm.activeVillian('CO')">CO</button>
+            <button ng-click="vm.HeroBTN()" ng-disabled="vm.activeHero('BTN') || vm.activeVillian('BTN')">BTN</button>
+            <button ng-click="vm.HeroSB()" ng-disabled="vm.activeHero('SB') || vm.activeVillian('SB')">SB</button>
+            <button ng-click="vm.HeroBB()" ng-disabled="vm.activeHero('BB') || vm.activeVillian('BB')">BB</button>
           </div>
         </div>
         <div class="form-group">
           <div class="col-lg-12">
             <label>Villain Position</label>
-            <button ng-click="vm.PositionUTG()" ng-disabled="vm.activeRFI('UTG') || vm.activePosition('UTG')">UTG</button>
-            <button ng-click="vm.PositionMP()" ng-disabled="vm.activeRFI('MP') || vm.activePosition('MP')">MP</button>
-            <button ng-click="vm.PositionCO()" ng-disabled="vm.activeRFI('CO') || vm.activePosition('CO')">CO</button>
-            <button ng-click="vm.PositionBTN()" ng-disabled="vm.activeRFI('BTN') || vm.activePosition('BTN')">BTN</button>
-            <button ng-click="vm.PositionSB()" ng-disabled="vm.activeRFI('SB') || vm.activePosition('SB')">SB</button>
-            <button ng-click="vm.PositionBB()" ng-disabled="vm.activeRFI('BB') || vm.activePosition('BB')">BB</button>
+            <button ng-click="vm.VillainUTG()" ng-disabled="vm.activeVillian('UTG') || vm.activeHero('UTG')">UTG</button>
+            <button ng-click="vm.VillainMP()" ng-disabled="vm.activeVillian('MP') || vm.activeHero('MP')">MP</button>
+            <button ng-click="vm.VillainCO()" ng-disabled="vm.activeVillian('CO') || vm.activeHero('CO')">CO</button>
+            <button ng-click="vm.VillainBTN()" ng-disabled="vm.activeVillian('BTN') || vm.activeHero('BTN')">BTN</button>
+            <button ng-click="vm.VillainSB()" ng-disabled="vm.activeVillian('SB') || vm.activeHero('SB')">SB</button>
+            <button ng-click="vm.VillainBB()" ng-disabled="vm.activeVillian('BB') || vm.activeHero('BB')">BB</button>
           </div>
         </div>
+
+        <div id="dropzone" file-change="vm.inputImageChange($event, files)" >drop here!</div>
+
+        <div class="form-group">
+          <h3>Preflop Advice</h3>
+          <img class="chart" ng-src="{{vm.chart}}"/>
+        </div>
+
+        <form>
+
+        </div>
+      </div>
+
+    </div>
 
 <!--         <div class="btn-group" data-toggle="buttons">
           <label class="btn btn-primary">
@@ -77,18 +91,3 @@
           <label class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Middle'" uncheckable>Middle</label>
           <label class="btn btn-success" ng-model="radioModel" uib-btn-radio="'Right'" uib-uncheckable="uncheckable">Right</label>
         </div> -->
-
-        <div id="dropzone" file-change="vm.inputImageChange($event, files)" >drop here!</div>
-
-        <div class="form-group">
-          <h3>Preflop Advice</h3>
-          <img ng-src="{{vm.chart}}"/>
-        </div>
-
-        <form>
-
-        </div>
-      </div>
-
-    </div>
-

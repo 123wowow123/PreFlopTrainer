@@ -36,7 +36,7 @@ function onClosed() {
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
 		width: 1200,
-		height: 600
+		height: 700
 	});
 
 	win.loadURL(`file://${__dirname}/../client/index.html`);
@@ -87,7 +87,7 @@ function getImagePath(key, cb){
 	console.log(result); // Will print {a:1, b:'world'}
 	stmt.free();
 	if(cb){
-		cb({imagePath: result})
+		cb(result)
 	}
 }
 

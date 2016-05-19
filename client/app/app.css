@@ -7468,3 +7468,12 @@ footer.footer {
     transition: all 0.3s ease-out;
     opacity: 1;
 }
+
+.chart{
+  width: 580px;
+  height: auto;
+}
+
+body{
+  margin-top: 15px;
+}
