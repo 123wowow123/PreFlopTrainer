@@ -30,4 +30,4 @@ MIT © [123wowow123](http://n/A)
 
 
 ToDo:
-save path in db with button combination
+save db on exit or on image save

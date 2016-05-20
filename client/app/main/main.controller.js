@@ -9,21 +9,21 @@ const {ipcRenderer} = require('electron');
     constructor($http, $scope) {
       this.combination = {};
       this.$scope = $scope;
+      this.chart = '/Users/Ian/Code/PreFlopTrainer/uploads/123.png';
+      var that = this;
 
       ipcRenderer.on('get-image-async-response', (event, arg) => {
         var response = JSON.parse(arg);
         console.log(response); // prints "pong"
         console.log(response.imagePath); // prints "pong"
-        this.chart = response.imagePath;
+        that.chart = response.imagePath;
       });
       ipcRenderer.on('upload-image-async-response', (event, arg) => {
-        var response = JSON.parse(arg);
-        console.log(response); // prints "pong"
+        //var response = JSON.parse(arg); dosn't work because it's string
+        console.log(arg); // prints "pong"
       });
 
     }
-
-    chart = '../uploads/123.png';
 
     activeRaiseSize(templatePosition){
       return templatePosition === this.combination.raiseSize;
