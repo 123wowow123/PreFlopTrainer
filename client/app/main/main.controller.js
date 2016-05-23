@@ -9,22 +9,33 @@ const {ipcRenderer} = require('electron');
     constructor($http, $scope) {
       this.combination = {};
       this.$scope = $scope;
-      this.chart = '/Users/Ian/Code/PreFlopTrainer/uploads/123.png';
       var that = this;
 
       ipcRenderer.on('get-image-async-response', (event, arg) => {
         var response = JSON.parse(arg);
-        console.log(response); // prints "pong"
-        console.log(response.imagePath); // prints "pong"
-        that.chart = response.imagePath;
+        console.log('get-image-async-response', response); // prints "pong"
+        $scope.$apply(function() {
+            that.chart = response.imagePath || '/';
+        });
       });
       ipcRenderer.on('upload-image-async-response', (event, arg) => {
-        //var response = JSON.parse(arg); dosn't work because it's string
-        console.log(arg); // prints "pong"
+        var response = JSON.parse(arg);
+        console.log('upload-image-async-response', arg); // prints "pong"
+        $scope.$apply(function() {
+              that.chart = response.imagePath  || '/';;
+        });
       });
 
+      //setup default selections
+      that.combination.raiseSize = 2;
+      that.combination.RFI = 'Hero';
+      that.combination.heroPosition = 'UTG';
+      that.combination.villainPosition = null;
+
+      that.combinationChanged();
     }
 
+    //need to revisite for new cases with Frank
     activeRaiseSize(templatePosition){
       return templatePosition === this.combination.raiseSize;
     }
@@ -34,105 +45,47 @@ const {ipcRenderer} = require('electron');
     }
 
     activeHero(templatePosition){
-      return templatePosition === this.combination.HeroPosition;
+      return templatePosition === this.combination.heroPosition;
     }
 
     activeVillian(templatePosition){
-      return templatePosition === this.combination.VillainPosition;
+      return templatePosition === this.combination.villainPosition;
     }
 
-    //Raise Size
-    RS2X(){
-      this.combination.raiseSize = 2;
-    }
-
-    RS25X(){
-      this.combination.raiseSize = 2.5;
-    }
-
-    RS3X(){
-      this.combination.raiseSize = 3;
-    }
-
-    //RFI Position
-    HeroPosition(){
-      this.combination.RFI = 'Hero';
-    }
-
-    VillainPosition(){
-      this.combination.RFI = 'Villain';
-    }
-
-    //Hero Position
-    HeroUTG(){
-      this.combination.HeroPosition = 'UTG';
-    }
-
-    HeroMP(){
-      this.combination.HeroPosition = 'MP';
-    }
-
-    HeroCO(){
-      this.combination.HeroPosition = 'CO';
-    }
-
-    HeroBTN(){
-      this.combination.HeroPosition = 'BTN';
-    }
-
-    HeroSB(){
-      this.combination.HeroPosition = 'SB';
-    }
-
-    HeroBB(){
-      this.combination.HeroPosition = 'BB';
-    }
-
-    //Villain Position
-    VillainUTG(){
-      this.combination.VillainPosition = 'UTG';
-    }
-
-    VillainMP(){
-      this.combination.VillainPosition = 'MP';
-    }
-
-    VillainCO(){
-      this.combination.VillainPosition = 'CO';
-    }
-
-    VillainBTN(){
-      this.combination.VillainPosition = 'BTN';
-    }
-
-    VillainSB(){
-      this.combination.VillainPosition = 'SB';
-    }
-
-    VillainBB(){
-      this.combination.VillainPosition = 'BB';
-    }
-
-    CombinationChanged(){
-      var combination = JSON.stringify(this.combination);
-      console.log(combination);
-      this.getCurrentImage(combination);
+    combinationChanged(){
+      this._getCurrentImage(this.combination);
     }
 
     inputImageChange(e){
-      var combination = JSON.stringify(this.combination);
       var msg = {
-        key: combination,
+        key: this.combination,
         imageSourcePath: e.dataTransfer.files[0].path
       }
-      console.log(msg);
-      ipcRenderer.send('upload-image-async', JSON.stringify(msg));
+      this._setNewImage(msg);
     }
 
-    getCurrentImage(hash){
+    _getCurrentImage(msg){
+      var hash = this._stringify(msg);
+      console.log('_getCurrentImage', hash);
       ipcRenderer.send('get-image-async', hash);
     }
 
+    _setNewImage(msg){
+      var hash = this._stringify(msg);
+      console.log('_setNewImage', hash);
+      ipcRenderer.send('upload-image-async', hash);
+    }
+
+    _stringify(msg){
+      return JSON.stringify(msg, this._replacerIgnoreNull);
+    }
+
+    _replacerIgnoreNull(key, value) {
+      if (value === null) {
+        return undefined;
+      }
+      return value;
+    }
   }
 
   angular.module('pokertrainerwebApp')

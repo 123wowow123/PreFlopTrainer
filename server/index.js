@@ -1,7 +1,6 @@
 'use strict';
 const electron = require('electron');
 const path = require('path');
-const SQL = require('sql.js');
 
 const app = electron.app;
 const dbPath = 'preflop.sqlite';
@@ -68,7 +67,7 @@ app.on('ready', () => {
 	db = DB.create(dbPath);
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
+	//mainWindow.webContents.openDevTools();
 });
 
 
@@ -78,13 +77,19 @@ ipcMain.on('upload-image-async', function(event, arg) {
 	console.log(arg); // prints "ping"
 
 	var msg = JSON.parse(arg);
-	var target = path.resolve('uploads/' + Guid.generate() + '.png');
+	var key = JSON.stringify(msg.key);
+	var imagePath = path.resolve('uploads/' + Guid.generate() + '.png');
 
-	function cb() {
-		event.sender.send('upload-image-async-response', target);
+	ImageFile.copyFile(msg.imageSourcePath, imagePath, cb);
+
+	function cb(){
+		ImageFile.addPath(db, key, imagePath); //////////
+		ImageFile.getPath(db, key, cb2);
+		function cb2(arg){
+			var response = JSON.stringify(arg);
+			event.sender.send('upload-image-async-response', response);
+		}
 	}
-	ImageFile.copyFile(msg.imageSourcePath, target, cb);
-	ImageFile.addPath(db, msg.key, target);
 });
 
 ipcMain.on('get-image-async', function(event, arg) {

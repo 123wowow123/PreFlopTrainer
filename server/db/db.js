@@ -10,12 +10,13 @@ module.exports = (function() {
 	}
 
 	self.create = function(dbPath) {
+    //create db file if not exist also check if file has table and create if not exist
     var db;
     if (self.exist(dbPath)) {
       		var filebuffer = fs.readFileSync(dbPath);
           // Load the db
           db = new SQL.Database(filebuffer);
-          var sqlstr = "CREATE TABLE PreFlopImage (id nvarchar, imagePath nvarchar);"; ////////////////
+          //var sqlstr = "CREATE TABLE PreFlopImage (id nvarchar, imagePath nvarchar);"; ////////////////
     }
     else {
 		    db = new SQL.Database();

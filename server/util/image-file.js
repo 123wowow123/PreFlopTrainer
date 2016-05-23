@@ -10,7 +10,7 @@ module.exports = (function(){
   	});
   	console.log(result); // Will print {a:1, b:'world'}
   	stmt.free();
-  	if (cb) {
+  	if (typeof(cb) === 'function') {
   		cb(result)
   	}
   }
@@ -24,7 +24,6 @@ module.exports = (function(){
   	var result = stmt.step();
   	stmt.free();
   	console.log(key, imagePath);
-  	self.getPath(key); ///
   }
 
   self.copyFile = function(source, target, cb) {

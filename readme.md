@@ -31,3 +31,4 @@ MIT © [123wowow123](http://n/A)
 
 ToDo:
 save db on exit or on image save
+show load bar

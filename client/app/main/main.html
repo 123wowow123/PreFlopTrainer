@@ -16,51 +16,68 @@
 
         <button class="d placement" >D</button>
       </div>
+
+      <div id="dropzone" file-change="vm.inputImageChange($event, files)" >drop here!</div>
+
     </div>
     <div class="col-lg-6">
 
-      <form class="form-horizontal" ng-click="vm.CombinationChanged()">
+      <form class="form-horizontal" ng-click="vm.combinationChanged()">
 
         <div class="form-group">
-          <div class="col-lg-12">
-            <label>Raise Size</label>
-            <button ng-click="vm.RS2X()" ng-disabled="vm.activeRaiseSize(2)">2x</button>
-            <button ng-click="vm.RS25X()" ng-disabled="vm.activeRaiseSize(2.5)">2.5x</button>
-            <button ng-click="vm.RS3X()" ng-disabled="vm.activeRaiseSize(3)">3x</button>
+          <div class="col-lg-3">
+            <label class="control-label">Raise Size</label>
           </div>
-        </div>
-
-        <div class="form-group">
-          <div class="col-lg-12">
-            <label>RFI Position</label>
-            <button ng-click="vm.HeroPosition()" ng-disabled="vm.activeRFI('Hero')">Hero</button>
-            <button ng-click="vm.VillainPosition()" ng-disabled="vm.activeRFI('Villain')">Villain</button>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-12">
-            <label>Hero Position</label>
-            <button ng-click="vm.HeroUTG()" ng-disabled="vm.activeHero('UTG') || vm.activeVillian('UTG')">UTG</button>
-            <button ng-click="vm.HeroMP()" ng-disabled="vm.activeHero('MP') || vm.activeVillian('MP')">MP</button>
-            <button ng-click="vm.HeroCO()" ng-disabled="vm.activeHero('CO') || vm.activeVillian('CO')">CO</button>
-            <button ng-click="vm.HeroBTN()" ng-disabled="vm.activeHero('BTN') || vm.activeVillian('BTN')">BTN</button>
-            <button ng-click="vm.HeroSB()" ng-disabled="vm.activeHero('SB') || vm.activeVillian('SB')">SB</button>
-            <button ng-click="vm.HeroBB()" ng-disabled="vm.activeHero('BB') || vm.activeVillian('BB')">BB</button>
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-lg-12">
-            <label>Villain Position</label>
-            <button ng-click="vm.VillainUTG()" ng-disabled="vm.activeVillian('UTG') || vm.activeHero('UTG')">UTG</button>
-            <button ng-click="vm.VillainMP()" ng-disabled="vm.activeVillian('MP') || vm.activeHero('MP')">MP</button>
-            <button ng-click="vm.VillainCO()" ng-disabled="vm.activeVillian('CO') || vm.activeHero('CO')">CO</button>
-            <button ng-click="vm.VillainBTN()" ng-disabled="vm.activeVillian('BTN') || vm.activeHero('BTN')">BTN</button>
-            <button ng-click="vm.VillainSB()" ng-disabled="vm.activeVillian('SB') || vm.activeHero('SB')">SB</button>
-            <button ng-click="vm.VillainBB()" ng-disabled="vm.activeVillian('BB') || vm.activeHero('BB')">BB</button>
+          <div class="col-lg-9">
+            <div class="btn-group">
+                <label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2" >2x</label>
+                <label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2.5" >2.5x</label>
+                <label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="3" >3x</label>
+            </div>
           </div>
         </div>
 
-        <div id="dropzone" file-change="vm.inputImageChange($event, files)" >drop here!</div>
+        <div class="form-group">
+          <div class="col-lg-3">
+            <label class="control-label">RFI Position</label>
+          </div>
+          <div class="col-lg-9">
+            <div class="btn-group">
+                <label class="btn btn-success" ng-model="vm.combination.RFI" uib-btn-radio="'Hero'" >Hero</label>
+                <label class="btn btn-warning" ng-model="vm.combination.RFI" uib-btn-radio="'Villain'" >Villain</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-3">
+            <label class="control-label">Hero Position</label>
+          </div>
+          <div class="col-lg-9">
+            <div class="btn-group">
+                <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'UTG'" ng-disabled="vm.activeVillian('UTG')">UTG</label>
+                <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'MP'" ng-disabled="vm.activeVillian('MP')">MP</label>
+                <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'CO'" ng-disabled="vm.activeVillian('CO')">CO</label>
+                <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'BTN'" ng-disabled="vm.activeVillian('BTN')">BTN</label>
+                <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'SB'" ng-disabled="vm.activeVillian('SB')">SB</label>
+                <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'BB'" ng-disabled="vm.activeVillian('BB')">BB</label>
+            </div>
+          </div>
+        </div>
+        <div class="form-group">
+          <div class="col-lg-3">
+            <label class="control-label">Villain Position</label>
+          </div>
+          <div class="col-lg-9">
+            <div class="btn-group">
+                <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'UTG'" uncheckable ng-disabled="vm.activeHero('UTG')">UTG</label>
+                <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'MP'" uncheckable ng-disabled="vm.activeHero('MP')">MP</label>
+                <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'CO'" uncheckable ng-disabled="m.activeHero('CO')">CO</label>
+                <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'BTN'" uncheckable ng-disabled="vm.activeHero('BTN')">BTN</label>
+                <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'SB'" uncheckable ng-disabled="vm.activeHero('SB')">SB</label>
+                <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'BB'" uncheckable ng-disabled="vm.activeHero('BB')">BB</label>
+            </div>
+          </div>
+        </div>
 
         <div class="form-group">
           <h3>Preflop Advice</h3>
