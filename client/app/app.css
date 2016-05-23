@@ -7447,18 +7447,26 @@ footer.footer {
 
 
 #dropzone {
-    background: palegreen;
-    width: 150px;
-    height: 50px;
-    line-height: 50px;
+    color: #555;
+    border: 5px dashed #ccc;
+    border-radius: 10px;
+    width: 250px;
+    height: 125px;
+    line-height: 125px;
     text-align: center;
     font-weight: bold;
+    margin-top:50px;
+    margin-left: auto;
+    margin-right: auto;
+    position: relative;
+    left: -50px;
 }
 #dropzone.in {
     font-size: larger;
 }
 #dropzone.hover {
-    background: lawngreen;
+    background: #eee;
+    border: 5px dashed #aaa;
 }
 #dropzone.fade {
     -webkit-transition: all 0.3s ease-out;
@@ -7467,6 +7475,10 @@ footer.footer {
     -o-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
     opacity: 1;
+}
+#dropzone span {
+  position: relative;
+  top: -5px;
 }
 
 .chart{

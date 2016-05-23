@@ -37,7 +37,7 @@ function onClosed() {
 
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
-		width: 1200,
+		width: 1205,
 		height: 700
 	});
 
@@ -67,7 +67,7 @@ app.on('ready', () => {
 	db = DB.create(dbPath);
 
 	// Open the DevTools.
-	//mainWindow.webContents.openDevTools();
+	mainWindow.webContents.openDevTools();
 });
 
 

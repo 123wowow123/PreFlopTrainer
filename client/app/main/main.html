@@ -5,19 +5,28 @@
 
     <div class="col-lg-6">
 
-      <div class="poker-table">
-        <img class="poker-table-img" src="assets/images/Texas_Holdem_Poker_Table.jpg"/>
-        <button class="utg placement" ng-class="{'rfi-active':vm.activeHero('UTG'), 'position-active':vm.activeVillian('UTG')}">UTG</button>
-        <button class="mp placement" ng-class="{'rfi-active':vm.activeHero('MP'), 'position-active':vm.activeVillian('MP')}">MP</button>
-        <button class="co placement" ng-class="{'rfi-active':vm.activeHero('CO'), 'position-active':vm.activeVillian('CO')}">CO</button>
-        <button class="butn placement" ng-class="{'rfi-active':vm.activeHero('BTN'), 'position-active':vm.activeVillian('BTN')}">BTN</button>
-        <button class="sb placement" ng-class="{'rfi-active':vm.activeHero('SB'), 'position-active':vm.activeVillian('SB')}">SB</button>
-        <button class="bb placement" ng-class="{'rfi-active':vm.activeHero('BB'), 'position-active':vm.activeVillian('BB')}">BB</button>
+<div class="row">
+  <div class="poker-table col-lg-12">
+    <img class="poker-table-img" src="assets/images/Texas_Holdem_Poker_Table.jpg"/>
+    <button class="utg placement" ng-class="{'rfi-active':vm.activeHero('UTG'), 'position-active':vm.activeVillian('UTG')}">UTG</button>
+    <button class="mp placement" ng-class="{'rfi-active':vm.activeHero('MP'), 'position-active':vm.activeVillian('MP')}">MP</button>
+    <button class="co placement" ng-class="{'rfi-active':vm.activeHero('CO'), 'position-active':vm.activeVillian('CO')}">CO</button>
+    <button class="butn placement" ng-class="{'rfi-active':vm.activeHero('BTN'), 'position-active':vm.activeVillian('BTN')}">BTN</button>
+    <button class="sb placement" ng-class="{'rfi-active':vm.activeHero('SB'), 'position-active':vm.activeVillian('SB')}">SB</button>
+    <button class="bb placement" ng-class="{'rfi-active':vm.activeHero('BB'), 'position-active':vm.activeVillian('BB')}">BB</button>
+    <button class="d placement" >D</button>
+  </div>
+</div>
 
-        <button class="d placement" >D</button>
-      </div>
+<div class="row">
+  <div class="col-lg-12">
+    <div id="dropzone" file-change="vm.inputImageChange($event, files)" >
+      <span>image upload</span>
+    </div>
+  </div>
+</div>
 
-      <div id="dropzone" file-change="vm.inputImageChange($event, files)" >drop here!</div>
+
 
     </div>
     <div class="col-lg-6">
