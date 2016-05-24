@@ -31,4 +31,9 @@ MIT © [123wowow123](http://n/A)
 
 ToDo:
 save db on exit or on image save
-delete file on duplicate uploads
+DELETE file on duplicate uploads or upsert
+
+border around selected button
+disable buttons that are no possible
+
+add uploads folder on build

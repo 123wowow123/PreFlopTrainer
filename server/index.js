@@ -37,8 +37,8 @@ function onClosed() {
 
 function createMainWindow() {
 	const win = new electron.BrowserWindow({
-		width: 1205,
-		height: 700
+		width: 1225,
+		height: 850
 	});
 
 	win.loadURL(`file://${__dirname}/../client/index.html`);
@@ -67,14 +67,14 @@ app.on('ready', () => {
 	db = DB.create(dbPath);
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
+	//mainWindow.webContents.openDevTools();
 });
 
 
 // In main process.
 const ipcMain = require('electron').ipcMain;
 ipcMain.on('upload-image-async', function(event, arg) {
-	console.log(arg); // prints "ping"
+	console.log(arg); // prints "{"raiseSize":2,"RFI":"Hero","heroPosition":"UTG"}"
 
 	var msg = JSON.parse(arg);
 	var key = JSON.stringify(msg.key);
@@ -83,21 +83,16 @@ ipcMain.on('upload-image-async', function(event, arg) {
 	ImageFile.copyFile(msg.imageSourcePath, imagePath, cb);
 
 	function cb(){
-		ImageFile.addPath(db, key, imagePath); //////////
-		ImageFile.getPath(db, key, cb2);
-		function cb2(arg){
-			var response = JSON.stringify(arg);
-			event.sender.send('upload-image-async-response', response);
-		}
+		ImageFile.upsertPath(db, key, imagePath); //////////
+		var response = ImageFile.getPath(db, key);
+		var json = JSON.stringify(response);
+		event.sender.send('upload-image-async-response', json);
 	}
 });
 
 ipcMain.on('get-image-async', function(event, arg) {
 	console.log(arg); // prints "ping"
-
-	function cb(arg) {
-		var response = JSON.stringify(arg);
-		event.sender.send('get-image-async-response', response);
-	}
-	ImageFile.getPath(db, arg, cb);
+	var response = ImageFile.getPath(db, arg);
+	var json = JSON.stringify(response);
+	event.sender.send('get-image-async-response', response);
 });

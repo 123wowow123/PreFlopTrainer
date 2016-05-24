@@ -1,3 +1,5 @@
 node_modules
-/dist
-/uploads
+dist
+uploads
+preflop.sqlite
+npm-debug.log
