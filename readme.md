@@ -37,3 +37,5 @@ border around selected button
 disable buttons that are no possible
 
 add uploads folder on build
+
+build out add and remove image async path
