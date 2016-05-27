@@ -39,3 +39,5 @@ disable buttons that are no possible
 add uploads folder on build
 
 build out add and remove image async path
+
+app name title bar change from index.js

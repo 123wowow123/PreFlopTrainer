@@ -38,6 +38,8 @@
     "electron-compilers": "^3.0.0",
     "electron-packager": "^7.0.0",
     "electron-prebuilt": "^1.0.1",
+    "grunt": "^1.0.1",
+    "grunt-contrib-sass": "^1.0.0",
     "xo": "^0.15.0"
   },
   "xo": {

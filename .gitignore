@@ -3,3 +3,4 @@ dist
 uploads
 preflop.sqlite
 npm-debug.log
+.sass-cache*
