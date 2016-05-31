@@ -46,7 +46,7 @@
             <label class="control-label">RFI Position</label>
           </div>
           <div class="col-lg-9">
-            <div class="btn-group">
+            <div class="btn-group" ng-click="vm.RFIChanged()">
               <label class="btn btn-success" ng-model="vm.combination.RFI" uib-btn-radio="'Hero'" >Hero</label>
               <label class="btn btn-warning" ng-model="vm.combination.RFI" uib-btn-radio="'Villain'" >Villain</label>
             </div>
@@ -58,12 +58,12 @@
           </div>
           <div class="col-lg-9">
             <div class="btn-group">
-              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'UTG'" ng-disabled="vm.activeVillian('UTG')">UTG</label>
-              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'MP'" ng-disabled="vm.activeVillian('MP')">MP</label>
-              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'CO'" ng-disabled="vm.activeVillian('CO')">CO</label>
-              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'BTN'" ng-disabled="vm.activeVillian('BTN')">BTN</label>
-              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'SB'" ng-disabled="vm.activeVillian('SB')">SB</label>
-              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'BB'" ng-disabled="vm.activeVillian('BB')">BB</label>
+              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'UTG'" ng-disabled="vm.impossibleHero('UTG')">UTG</label>
+              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'MP'" ng-disabled="vm.impossibleHero('MP')">MP</label>
+              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'CO'" ng-disabled="vm.impossibleHero('CO')">CO</label>
+              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'BTN'" ng-disabled="vm.impossibleHero('BTN')">BTN</label>
+              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'SB'" ng-disabled="vm.impossibleHero('SB')">SB</label>
+              <label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'BB'" ng-disabled="vm.impossibleHero('BB')">BB</label>
             </div>
           </div>
         </div>
@@ -73,12 +73,12 @@
           </div>
           <div class="col-lg-9">
             <div class="btn-group">
-              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'UTG'" uncheckable ng-disabled="vm.activeHero('UTG')">UTG</label>
-              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'MP'" uncheckable ng-disabled="vm.activeHero('MP')">MP</label>
-              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'CO'" uncheckable ng-disabled="m.activeHero('CO')">CO</label>
-              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'BTN'" uncheckable ng-disabled="vm.activeHero('BTN')">BTN</label>
-              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'SB'" uncheckable ng-disabled="vm.activeHero('SB')">SB</label>
-              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'BB'" uncheckable ng-disabled="vm.activeHero('BB')">BB</label>
+              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'UTG'" uncheckable ng-disabled="vm.impossibleVillain('UTG')">UTG</label>
+              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'MP'" uncheckable ng-disabled="vm.impossibleVillain('MP')">MP</label>
+              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'CO'" uncheckable ng-disabled="vm.impossibleVillain('CO')">CO</label>
+              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'BTN'" uncheckable ng-disabled="vm.impossibleVillain('BTN')">BTN</label>
+              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'SB'" uncheckable ng-disabled="vm.impossibleVillain('SB')">SB</label>
+              <label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'BB'" uncheckable ng-disabled="vm.impossibleVillain('BB')">BB</label>
             </div>
           </div>
         </div>

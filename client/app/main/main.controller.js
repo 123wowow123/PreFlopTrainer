@@ -15,14 +15,14 @@ const {ipcRenderer} = require('electron');
         var response = JSON.parse(arg);
         console.log('get-image-async-response', response); // prints "pong"
         $scope.$apply(function() {
-            that.chart = response.imagePath || '/';
+          that.chart = response.imagePath || '/';
         });
       });
       ipcRenderer.on('upload-image-async-response', (event, arg) => {
         var response = JSON.parse(arg);
         console.log('upload-image-async-response', arg); // prints "pong"
         $scope.$apply(function() {
-              that.chart = response.imagePath  || '/';;
+          that.chart = response.imagePath  || '/';
         });
       });
 
@@ -32,10 +32,40 @@ const {ipcRenderer} = require('electron');
       that.combination.heroPosition = 'UTG';
       that.combination.villainPosition = null;
 
+      that.posDef = { 'BTN': 3, 'SB': 4, 'BB': 5, 'UTG': 0, 'MP': 1, 'CO': 2, },
+
       that.combinationChanged();
     }
 
     //need to revisite for new cases with Frank
+    positionEqualAfter(before, after){
+      var beforeNum = this.posDef[before],
+      afterNum = this.posDef[after];
+      return beforeNum <= afterNum;
+    }
+
+    positionEqualBefore(before, after){
+      var beforeNum = this.posDef[before],
+      afterNum = this.posDef[after];
+      return beforeNum >= afterNum;
+    }
+
+    impossibleHero(templatePosition){
+      if (this.combination.RFI === 'Hero') {
+        return this.positionEqualBefore(templatePosition, this.combination.villainPosition);
+      }else {
+        return this.positionEqualBefore(this.combination.villainPosition, templatePosition);
+      }
+    }
+
+    impossibleVillain(templatePosition){
+      if (this.combination.RFI === 'Hero') {
+        return this.positionEqualAfter(templatePosition, this.combination.heroPosition);
+      }else {
+        return this.positionEqualAfter(this.combination.heroPosition, templatePosition);
+      }
+    }
+
     activeRaiseSize(templatePosition){
       return templatePosition === this.combination.raiseSize;
     }
@@ -50,6 +80,12 @@ const {ipcRenderer} = require('electron');
 
     activeVillian(templatePosition){
       return templatePosition === this.combination.villainPosition;
+    }
+
+    RFIChanged(){
+      if (this.impossibleVillain(this.combination.villainPosition)) {
+        this.combination.villainPosition = null;
+      }
     }
 
     combinationChanged(){
