@@ -34,10 +34,10 @@ save db on exit or on image save
 DELETE file on duplicate uploads or upsert
 
 border around selected button
-disable buttons that are no possible
+disable buttons that are not possible
 
 add uploads folder on build
 
 build out add and remove image async path
 
-app name title bar change from index.js
+add grunt scss watch

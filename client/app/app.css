@@ -9523,8 +9523,13 @@ body {
   background-color: orange;
 }
 
+.chart {
+  width: 580px;
+  height: auto;
+}
+
 /* dropzone css. need to move to file-change folder */
-#dropzone {
+.dropzone {
   color: #555;
   border: 5px dashed #ccc;
   border-radius: 10px;
@@ -9540,28 +9545,23 @@ body {
   left: -50px;
 }
 
-#dropzone.in {
+.dropzone.in {
   font-size: larger;
 }
 
-#dropzone.hover {
+.dropzone.hover {
   background: #eee;
   border: 5px dashed #aaa;
 }
 
-#dropzone.fade {
+.dropzone.fade {
   transition: all 0.3s ease-out;
   opacity: 1;
 }
 
-#dropzone span {
+.dropzone span {
   position: relative;
   top: -5px;
-}
-
-.chart {
-  width: 580px;
-  height: auto;
 }
 
 /* endinject */

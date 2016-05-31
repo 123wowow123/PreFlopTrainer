@@ -67,7 +67,7 @@ app.on('ready', () => {
 	db = DB.create(dbPath);
 
 	// Open the DevTools.
-	//mainWindow.webContents.openDevTools();
+	mainWindow.webContents.openDevTools();
 });
 
 
@@ -94,5 +94,5 @@ ipcMain.on('get-image-async', function(event, arg) {
 	console.log(arg); // prints "ping"
 	var response = ImageFile.getPath(db, arg);
 	var json = JSON.stringify(response);
-	event.sender.send('get-image-async-response', response);
+	event.sender.send('get-image-async-response', json);
 });

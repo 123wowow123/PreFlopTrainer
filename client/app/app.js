@@ -12,7 +12,7 @@ angular.module('pokertrainerwebApp', [
   'ui.bootstrap',
   //'validation.match',
   //'angularFileUpload',
-  'yourModule'
+  //'yourModule'
 ])
   .config(function($urlRouterProvider, $locationProvider) {
     $urlRouterProvider

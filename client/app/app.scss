@@ -22,6 +22,7 @@ body{
 /* inject:scss */
 //@import 'admin/admin.scss';
 @import 'main/main.scss';
+@import '../components/dropzone/dropzone.scss';
 //@import '../components/footer/footer.scss';
 //@import '../components/modal/modal.scss';
 /* endinject */
