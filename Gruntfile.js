@@ -16,12 +16,23 @@ module.exports = function(grunt) {
                 ext: '.css'
               }]
       }
-    }
+    },
+    watch: {
+      scripts: {
+        files: ['**/*.scss'],
+        tasks: ['sass'],
+        options: {
+          spawn: false,
+          debounceDelay: 250,
+        },
+      },
+    },
   });
 
   grunt.loadNpmTasks('grunt-contrib-sass');
+  grunt.loadNpmTasks('grunt-contrib-watch');
 
   // Default task(s).
-  grunt.registerTask('default', ['sass']);
+  grunt.registerTask('default', ['sass', 'watch']);
 
 };
