@@ -1,4 +1,6 @@
 const fs = require('fs');
+const path = require('path');
+const mkdirp = require('mkdirp');
 
 module.exports = (function(){
   var self = {};
@@ -51,6 +53,8 @@ module.exports = (function(){
 
   self.copyFile = function(source, target, cb) {
     var cbCalled = false;
+    var dirName = path.dirname(target);
+    self.createDir(dirName);
 
     var rd = fs.createReadStream(source);
     rd.on("error", done);
@@ -80,6 +84,13 @@ module.exports = (function(){
         //Show in red
         console.log('File not found, so not deleting.');
       }
+    });
+  }
+
+  self.createDir = function(dirName) {
+    mkdirp(dirName, function(err) {
+      if (err) console.error(err)
+      else console.log('Directory created:', dirName)
     });
   }
 

@@ -3,7 +3,7 @@ const electron = require('electron');
 const path = require('path');
 
 const app = electron.app;
-const dbPath = 'preflop.sqlite';
+const dbPath = './uploads/preflop.sqlite';
 
 const ImageFile = require('./util/image-file');
 const Guid = require('./util/guid');
@@ -67,7 +67,7 @@ app.on('ready', () => {
 	db = DB.create(dbPath);
 
 	// Open the DevTools.
-	mainWindow.webContents.openDevTools();
+	//mainWindow.webContents.openDevTools();
 });
 
 
