@@ -1,6 +1,6 @@
 # prefloptrainer
 
-> My splendid app
+> Poker Preflop Trainer App
 
 
 ## Dev
@@ -29,7 +29,7 @@ Builds the app for OS X, Linux, and Windows, using [electron-packager](https://g
 MIT © [123wowow123](http://n/A)
 
 
-ToDo:
+## ToDo
 save db on exit or on image save
 DELETE file on duplicate uploads or upsert
 
