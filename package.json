@@ -15,7 +15,7 @@
     "test": "xo",
     "start": "electron .",
     "debug": "electron --debug=5858 .",
-    "build": "electron-packager . --out=dist --app-version=$npm_package_version --prune --asar --overwrite --platform=win32 --arch=x64"
+    "build": "electron-packager . --out=dist --app-version=$npm_package_version --prune --asar --overwrite --platform=win32,darwin --arch=x64"
   },
   "files": [
     "index.js",
