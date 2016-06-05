@@ -80,12 +80,13 @@ ipcMain.on('upload-image-async', function(event, arg) {
 
 	var msg = JSON.parse(arg);
 	var key = JSON.stringify(msg.key);
-	var imagePath = path.resolve('uploads/' + Guid.generate() + '.png');
+	var relPath = 'uploads/' + Guid.generate() + '.png';
+	var imagePath = path.resolve(relPath);
 
 	ImageFile.copyFile(msg.imageSourcePath, imagePath, cb);
 
 	function cb(){
-		ImageFile.upsertPath(db, key, imagePath); //////////
+		ImageFile.upsertPath(db, key, relPath); //////////
 		var response = ImageFile.getPath(db, key);
 		var json = JSON.stringify(response);
 		event.sender.send('upload-image-async-response', json);
