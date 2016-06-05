@@ -41,3 +41,7 @@ add uploads folder on build
 build out add and remove image async path
 
 add grunt scss watch
+
+set min and max width and height
+
+fix folder path so that it not absolute from root but relative from app

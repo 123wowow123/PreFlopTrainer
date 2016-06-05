@@ -9532,6 +9532,10 @@ body {
   box-shadow: 0 0 2pt 2pt rgba(0, 200, 255, 0.5);
 }
 
+html {
+  overflow-x: hidden;
+}
+
 /* dropzone css. need to move to file-change folder */
 .dropzone {
   color: #555;

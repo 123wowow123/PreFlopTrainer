@@ -30,15 +30,8 @@
 					<div class="col-lg-3">
 						<label class="control-label">Raise Size</label>
 					</div>
-					<div class="col-lg-8">
-						<div class="btn-group">
-							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2">2x</label>
-							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2.5">2.5x</label>
-							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="3">3x</label>
-						</div>
-					</div>
+					<div class="col-lg-9">
 
-					<div class="col-lg-1">
 						<div class="btn-group pull-right" uib-dropdown>
 							<button id="btn-append-to-single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
 								Profiles <span class="caret"></span>
@@ -51,8 +44,15 @@
 								<li role="menuitem"><a href="#">Separated link</a></li>
 							</ul>
 						</div>
-					</div>
 
+						<div class="btn-group">
+							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="Limp">Limp</label>
+							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2">2x</label>
+							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2.5">2.5x</label>
+							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="3">3x</label>
+						</div>
+
+					</div>
 				</div>
 
 				<div class="form-group">
