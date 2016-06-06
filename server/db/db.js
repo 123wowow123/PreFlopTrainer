@@ -22,9 +22,11 @@ module.exports = (function() {
 		} else {
 			db = new SQL.Database();
 			var sqlstr = "CREATE TABLE PreFlopImage (id nvarchar, imagePath nvarchar);";
+			db.run(sqlstr);
 		}
 
-		db.run(sqlstr); // Run the query without returning anything
+		//var sqlstr = "UPDATE PreFlopImage SET imagePath = replace(imagePath, 'uploads\\', 'uploads/');";
+		//db.run(sqlstr); // Run the query without returning anything
 
 		return db;
 	}
