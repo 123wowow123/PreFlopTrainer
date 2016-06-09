@@ -45,8 +45,8 @@
 							</ul>
 						</div>
 
-						<div class="btn-group">
-							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="Limp">Limp</label>
+						<div class="btn-group" ng-click="vm.raiseSizeChanged()">
+							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="1">Limp</label>
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2">2x</label>
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2.5">2.5x</label>
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="3">3x</label>
