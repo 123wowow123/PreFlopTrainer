@@ -3,11 +3,17 @@ const electron = require('electron');
 const path = require('path');
 
 const app = electron.app;
-const dbPath = './uploads/preflop.sqlite';
 
 const ImageFile = require('./util/image-file');
 const Guid = require('./util/guid');
 const DB = require('./db/db');
+
+const dirPath = `${__dirname}`;
+console.log('dirPath',dirPath);
+const dbPath = path.join(
+	dirPath, '..', 'uploads/preflop.sqlite'
+);
+console.log('dbPath',dbPath);
 
 // report crashes to the Electron project
 const crashReporter = require('electron').crashReporter;
@@ -43,7 +49,9 @@ function createMainWindow() {
 		minWidth: 480
 	});
 
-	win.loadURL(`file://${__dirname}/../client/index.html`);
+	win.loadURL(path.join(
+		'file://', dirPath, '..', '/client/index.html'
+	));
 	win.on('closed', onClosed);
 
 	return win;
@@ -80,12 +88,16 @@ ipcMain.on('upload-image-async', function(event, arg) {
 
 	var msg = JSON.parse(arg);
 	var key = JSON.stringify(msg.key);
-	var relPath = 'uploads/' + Guid.generate() + '.png';
+	var relPath = path.format({
+		dir: 'uploads/',
+		name: Guid.generate(),
+		ext: '.png'
+	});
 	var imagePath = path.resolve(relPath);
 
 	ImageFile.copyFile(msg.imageSourcePath, imagePath, cb);
 
-	function cb(){
+	function cb() {
 		ImageFile.upsertPath(db, key, relPath); //////////
 		var response = ImageFile.getPath(db, key);
 		var json = JSON.stringify(response);
