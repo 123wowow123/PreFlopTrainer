@@ -29,11 +29,10 @@
 			<form class="form-horizontal poker-controls" ng-click="vm.combinationChanged()">
 
 				<div class="form-group">
-					<div class="col-lg-3">
+					<div class="col-lg-4">
 						<label class="control-label">Raise Size</label>
 					</div>
-					<div class="col-lg-9">
-
+					<div class="col-lg-8">
 						<div class="btn-group pull-right" uib-dropdown>
 							<button id="btn-append-to-single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
 								Profiles <span class="caret"></span>
@@ -53,15 +52,14 @@
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2.5">2.5x</label>
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="3">3x</label>
 						</div>
-
 					</div>
 				</div>
 
 				<div class="form-group">
-					<div class="col-lg-3">
+					<div class="col-lg-4">
 						<label class="control-label">RFI Position</label>
 					</div>
-					<div class="col-lg-9">
+					<div class="col-lg-8">
 						<div class="btn-group" ng-click="vm.RFIChanged()">
 							<label class="btn btn-success" ng-model="vm.combination.RFI" uib-btn-radio="'Hero'">Hero</label>
 							<label class="btn btn-warning" ng-model="vm.combination.RFI" uib-btn-radio="'Villain'">Villain</label>
@@ -69,10 +67,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-lg-3">
+					<div class="col-lg-4">
 						<label class="control-label">Hero Position</label>
 					</div>
-					<div class="col-lg-9">
+					<div class="col-lg-8">
 						<div class="btn-group">
 							<label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'UTG'" ng-disabled="vm.impossibleHero('UTG')">UTG</label>
 							<label class="btn btn-success" ng-model="vm.combination.heroPosition" uib-btn-radio="'MP'" ng-disabled="vm.impossibleHero('MP')">MP</label>
@@ -84,10 +82,10 @@
 					</div>
 				</div>
 				<div class="form-group">
-					<div class="col-lg-3">
+					<div class="col-lg-4">
 						<label class="control-label">Villain Position</label>
 					</div>
-					<div class="col-lg-9">
+					<div class="col-lg-8">
 						<div class="btn-group">
 							<label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'UTG'" uncheckable ng-disabled="vm.impossibleVillain('UTG')">UTG</label>
 							<label class="btn btn-warning" ng-model="vm.combination.villainPosition" uib-btn-radio="'MP'" uncheckable ng-disabled="vm.impossibleVillain('MP')">MP</label>

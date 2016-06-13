@@ -41,8 +41,8 @@ function createMainWindow() {
 	const win = new electron.BrowserWindow({
 		width: 1225,
 		height: 850,
-		maxWidth: 1225,
-		minWidth: 480
+		maxWidth: 1300,
+		minWidth: 500
 	});
 
 	win.loadURL(path.join(

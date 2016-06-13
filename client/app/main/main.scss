@@ -1,3 +1,5 @@
+$col-width: 470px;
+
 .thing-form {
   margin: 20px 0;
 }
@@ -29,7 +31,7 @@
 
 .poker-table{
   position: relative;
-  width: 450px;
+  width: $col-width;
   margin: 25px auto;
   .poker-table-img{
     // height: 50%;
@@ -103,7 +105,7 @@
 .poker-controls{
   margin-left: auto;
   margin-right:auto;
-  width: 450px;
+  width: $col-width;
 }
 
 .chart{
