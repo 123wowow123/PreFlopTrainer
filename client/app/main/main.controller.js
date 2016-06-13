@@ -17,14 +17,14 @@ const {
 				var response = JSON.parse(arg);
 				console.log('get-image-async-response', response); // prints "pong"
 				$scope.$apply(function() {
-					that.chart = that._getChartPath(response.imagePath);
+					that.chart = response.imagePath;
 				});
 			});
 			ipcRenderer.on('upload-image-async-response', (event, arg) => {
 				var response = JSON.parse(arg);
 				console.log('upload-image-async-response', arg); // prints "pong"
 				$scope.$apply(function() {
-					that.chart = that._getChartPath(response.imagePath);
+					that.chart = response.imagePath;
 				});
 			});
 
@@ -112,11 +112,6 @@ const {
 				imageSourcePath: e.dataTransfer.files[0].path
 			}
 			this._setNewImage(msg);
-		}
-
-    //translate relative path electron path
-		_getChartPath(path) {
-			return '../' + path;
 		}
 
 		_autoSelect() {

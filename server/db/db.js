@@ -25,7 +25,7 @@ module.exports = (function() {
 			db.run(sqlstr);
 		}
 
-		//var sqlstr = "UPDATE PreFlopImage SET imagePath = replace(imagePath, 'uploads\\', 'uploads/');";
+		//var sqlstr = "UPDATE PreFlopImage SET imagePath = replace(imagePath, 'uploads/', '');";
 		//db.run(sqlstr); // Run the query without returning anything
 
 		return db;

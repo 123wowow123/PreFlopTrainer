@@ -9,11 +9,9 @@ const Guid = require('./util/guid');
 const DB = require('./db/db');
 
 const dirPath = `${__dirname}`;
-console.log('dirPath',dirPath);
-const dbPath = path.join(
-	dirPath, '..', 'uploads/preflop.sqlite'
-);
-console.log('dbPath',dbPath);
+const savePath = path.resolve(app.getPath('documents'),'PreflopTrainer');
+const dbPath = path.join(savePath,'preflop.sqlite');
+console.log('dbPath', dbPath);
 
 // report crashes to the Electron project
 const crashReporter = require('electron').crashReporter;
@@ -30,8 +28,6 @@ require('electron-debug')();
 // prevent window being garbage collected
 let mainWindow;
 let db;
-
-//debugger;
 
 function onClosed() {
 	// dereference the window
@@ -88,18 +84,20 @@ ipcMain.on('upload-image-async', function(event, arg) {
 
 	var msg = JSON.parse(arg);
 	var key = JSON.stringify(msg.key);
-	var relPath = path.format({
-		dir: 'uploads/',
+	var imageName = path.format({
 		name: Guid.generate(),
 		ext: '.png'
 	});
-	var imagePath = path.resolve(relPath);
+	var imagePath = path.join(savePath, imageName);
 
 	ImageFile.copyFile(msg.imageSourcePath, imagePath, cb);
 
 	function cb() {
-		ImageFile.upsertPath(db, key, relPath); //////////
+		ImageFile.upsertPath(db, key, imageName); //////////
 		var response = ImageFile.getPath(db, key);
+		console.log('Pre normalization imagePath:', response.imagePath);
+		response.imagePath = getFilePath(response.imagePath);
+		console.log('Post imagePath:', response.imagePath);
 		var json = JSON.stringify(response);
 		event.sender.send('upload-image-async-response', json);
 	}
@@ -108,6 +106,16 @@ ipcMain.on('upload-image-async', function(event, arg) {
 ipcMain.on('get-image-async', function(event, arg) {
 	console.log(arg); // prints "ping"
 	var response = ImageFile.getPath(db, arg);
+	console.log('Pre normalization imagePath:', response.imagePath);
+	response.imagePath = getFilePath(response.imagePath); // need better check
+	console.log('Post imagePath:', response.imagePath);
 	var json = JSON.stringify(response);
 	event.sender.send('get-image-async-response', json);
 });
+
+function getFilePath(pathName){
+	if (pathName) {
+			return path.join(savePath, pathName);
+	}
+	return '/'; //force load nothing. need better 'not available message'
+}
