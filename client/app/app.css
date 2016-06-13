@@ -9453,9 +9453,8 @@ body {
 
 .poker-table {
   position: relative;
-  display: inline-block;
   width: 450px;
-  margin: 25px 15px;
+  margin: 25px auto;
 }
 .poker-table .poker-table-img {
   width: 100%;
@@ -9523,6 +9522,12 @@ body {
   background-color: orange;
 }
 
+.poker-controls {
+  margin-left: auto;
+  margin-right: auto;
+  width: 450px;
+}
+
 .chart {
   width: 580px;
   height: auto;
@@ -9550,7 +9555,6 @@ html {
   margin-left: auto;
   margin-right: auto;
   position: relative;
-  left: -50px;
 }
 
 .dropzone.in {
