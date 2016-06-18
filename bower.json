@@ -1,0 +1,39 @@
+{
+  "name": "prefloptrainer",
+  "description": "My splendid app",
+  "main": "client",
+  "authors": [
+    "Ian Flynn"
+  ],
+  "license": "MIT",
+  "keywords": [
+    "PreFlopTrainer"
+  ],
+  "homepage": "https://github.com/123wowow123/PreFlopTrainer",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "client/bower_components",
+    "test",
+    "tests"
+  ],
+  "dependencies": {
+    "angular-drag-and-drop-lists": "^1.4.0",
+    "angular-cookies": "~1.5.0",
+    "angular-bootstrap": "~1.1.2",
+    "angular-file-upload": "^2.2.0",
+    "angular-mocks": "~1.5.0",
+    "angular-sanitize": "~1.5.0",
+    "angular-resource": "~1.5.0",
+    "angular-socket-io": "~0.7.0",
+    "angular-ui-router": "~0.2.15",
+    "angular-validation-match": "~1.5.2",
+    "bootstrap-sass-official": "~3.1.1",
+    "es5-shim": "~3.0.1",
+    "bootstrap": "~3.1.1",
+    "font-awesome": ">=4.1.0",
+    "lodash": "~2.4.1",
+    "json3": "~3.3.1"
+  }
+}

@@ -8,9 +8,10 @@ const {
 
 	class MainController {
 
-		constructor($http, $scope) {
+		constructor($http, $scope, ProfileModal) {
 			this.combination = {};
 			this.$scope = $scope;
+			this.ProfileModal = ProfileModal;
 			var that = this;
 
 			ipcRenderer.on('get-image-async-response', (event, arg) => {
@@ -45,6 +46,23 @@ const {
 
 				that.combinationChanged();
 		}
+
+		profileOpen(size) {
+			var profiles = ['testagain', 'test2'];
+			var modalInstance = this.ProfileModal.edit.open(ok, profiles);
+			modalInstance();
+
+			function ok(data){
+				var test = data;
+				//just persist data
+			}
+
+			// modalInstance.result.then(function(selectedItem) {
+			// 	$scope.selected = selectedItem;
+			// }, function() {
+			// 	$log.info('Modal dismissed at: ' + new Date());
+			// });
+		};
 
 		//need to revisite for new cases with Frank
 		positionEqualAfter(before, after) {
@@ -95,12 +113,12 @@ const {
 			if (this.impossibleVillain(this.combination.villainPosition)) {
 				this.combination.villainPosition = null;
 			}
-      this._autoSelect();
+			this._autoSelect();
 		}
 
-    raiseSizeChanged(){
-      this._autoSelect();
-    }
+		raiseSizeChanged() {
+			this._autoSelect();
+		}
 
 		combinationChanged() {
 			this._getCurrentImage(this.combination);
