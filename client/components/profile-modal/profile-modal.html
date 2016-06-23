@@ -6,23 +6,21 @@
 	<div class="row">
 		<div class="col-sm-12">
 			<form class="form-horizontal">
-				<div class="form-group">
 					<div class="input-group">
 						<input type="text" ng-model="vm.profileName" placeholder="profile name" class="form-control"></input>
 						<span class="input-group-btn">
 	            <button type="submit" ng-click="vm.addProfile(vm.profiles, vm.profileName)" class="btn btn-primary" ng-disabled="!vm.profileName.trim()">Add</button>
 	          </span>
-					</div>
 				</div>
 			</form>
 		</div>
 	</div>
 
-	<ul dnd-list="vm.profiles" class="list-group">
+	<ul dnd-list="vm.profiles" class="list-group voffset2">
 		<li ng-repeat="p in vm.profiles" dnd-draggable="p" dnd-moved="vm.profiles.splice($index, 1)" dnd-effect-allowed="move"
 		 dnd-selected="vm.selected = p" ng-class="{'selected': vm.selected === p}" class="list-group-item">
 			<button ng-click="vm.removeProfile(vm.profiles, p)" class="btn btn-danger btn-xs pull-right">X</button>
-			<label>{{p.label}}</label>
+			<label>{{p.name}}</label>
 		</li>
 	</ul>
 

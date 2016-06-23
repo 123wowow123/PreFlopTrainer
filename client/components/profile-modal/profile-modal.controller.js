@@ -5,17 +5,7 @@ class ProfileModalController {
 	constructor($scope, $uibModalInstance, profiles) {
 		this.$scope = $scope;
     this.selected = null;
-		this.profiles = [
-      {
-        "label": "Item A1"
-      },
-      {
-        "label": "Item A2"
-      },
-      {
-        "label": "Item A3"
-      }
-    ]//profiles;
+		this.profiles = profiles;
 		this.$uibModalInstance = $uibModalInstance;
 
 	}

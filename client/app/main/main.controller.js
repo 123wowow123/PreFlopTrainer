@@ -42,18 +42,30 @@ const {
 					'UTG': 0,
 					'MP': 1,
 					'CO': 2,
-				},
+				};
+
+				that.profiles = [
+					{
+						"name": "Agressive"
+					},
+					{
+						"name": "Violent"
+					},
+					{
+						"name": "Bloodshed"
+					}
+				];
 
 				that.combinationChanged();
 		}
 
 		profileOpen(size) {
-			var profiles = ['testagain', 'test2'];
-			var modalInstance = this.ProfileModal.edit.open(ok, profiles);
+			var that = this;
+			var modalInstance = this.ProfileModal.edit.open(ok, that.profiles);
 			modalInstance();
 
 			function ok(data){
-				var test = data;
+				that.profiles = data;
 				//just persist data
 			}
 

@@ -34,17 +34,12 @@
 					</div>
 					<div class="col-lg-8">
 						<div class="btn-group pull-right" uib-dropdown>
-							<button id="btn-append-to-single-button" type="button" class="btn btn-primary btn-xs">
+							<button id="btn-append-to-single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
 								Profiles
-							</button>
-							<button type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
 								<span class="caret"></span>
-								<span class="sr-only">Split button!</span>
 							</button>
 							<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
-								<li role="menuitem"><a >Action</a></li>
-								<li role="menuitem"><a >Another action</a></li>
-								<li role="menuitem"><a >Something else here</a></li>
+								<li role="menuitem" ng-repeat="p in vm.profiles"><a >{{p.name}}</a></li>
 								<li class="divider"></li>
 								<li role="menuitem"><a ng-click="vm.profileOpen()">Edit</a></li>
 							</ul>
@@ -55,6 +50,7 @@
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2">2x</label>
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="2.5">2.5x</label>
 							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="3">3x</label>
+							<label class="btn btn-primary" ng-model="vm.combination.raiseSize" uib-btn-radio="4">4x</label>
 						</div>
 					</div>
 				</div>
