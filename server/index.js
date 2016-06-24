@@ -5,6 +5,7 @@ const path = require('path');
 const app = electron.app;
 
 const ImageFile = require('./util/image-file');
+const Profile = require('./util/profile');
 const Guid = require('./util/guid');
 const DB = require('./db/db');
 
@@ -111,6 +112,22 @@ ipcMain.on('get-image-async', function(event, arg) {
 	console.log('Post imagePath:', response.imagePath);
 	var json = JSON.stringify(response);
 	event.sender.send('get-image-async-response', json);
+});
+
+ipcMain.on('get-profile-async', function(event, arg) {
+	console.log(arg); // prints "ping"
+	var response = Profile.getProfile(db, arg);
+	var json = JSON.stringify(response);
+	event.sender.send('get-profile-async-response', json);
+});
+
+ipcMain.on('set-profile-async', function(event, arg) {
+	console.log(arg); // prints "{"raiseSize":2,"RFI":"Hero","heroPosition":"UTG"}"
+
+	var msg = JSON.parse(arg);
+	var key = JSON.stringify(msg.key);
+
+	Profile.saveProfile(db, msg.key, msg.value);
 });
 
 function getFilePath(pathName){

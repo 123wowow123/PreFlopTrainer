@@ -28,6 +28,13 @@ const {
 					that.chart = response.imagePath;
 				});
 			});
+			ipcRenderer.on('get-profile-async-response', (event, arg) => {
+				var response = JSON.parse(arg);
+				console.log('get-profile-async-response', arg); // prints "pong"
+				$scope.$apply(function() {
+					that.profiles = JSON.parse(response.profileString);
+				});
+			});
 
 			//setup default selections
 			that.combination.raiseSize = 2;
@@ -36,27 +43,23 @@ const {
 			that.combination.villainPosition = null;
 
 			that.posDef = {
-					'BTN': 3,
-					'SB': 4,
-					'BB': 5,
-					'UTG': 0,
-					'MP': 1,
-					'CO': 2,
-				};
+				'BTN': 3,
+				'SB': 4,
+				'BB': 5,
+				'UTG': 0,
+				'MP': 1,
+				'CO': 2,
+			};
 
-				that.profiles = [
-					{
-						"name": "Agressive"
-					},
-					{
-						"name": "Violent"
-					},
-					{
-						"name": "Bloodshed"
-					}
-				];
+			that.profiles = [{
+				"name": "Agressive"
+			}, {
+				"name": "Violent"
+			}, {
+				"name": "Bloodshed"
+			}];
 
-				that.combinationChanged();
+			that.combinationChanged();
 		}
 
 		profileOpen(size) {
@@ -64,16 +67,14 @@ const {
 			var modalInstance = this.ProfileModal.edit.open(ok, that.profiles);
 			modalInstance();
 
-			function ok(data){
+			function ok(data) {
 				that.profiles = data;
+				that._setProfile({
+					key: 'profiles',
+					value: JSON.stringify(data)
+				});
 				//just persist data
 			}
-
-			// modalInstance.result.then(function(selectedItem) {
-			// 	$scope.selected = selectedItem;
-			// }, function() {
-			// 	$log.info('Modal dismissed at: ' + new Date());
-			// });
 		};
 
 		//need to revisite for new cases with Frank
@@ -164,6 +165,17 @@ const {
 			var hash = this._stringify(msg);
 			console.log('_setNewImage', hash);
 			ipcRenderer.send('upload-image-async', hash);
+		}
+
+		_setProfile(msg) {
+			var hash = this._stringify(msg);
+			console.log('_setProfile', hash);
+			ipcRenderer.send('set-profile-async', hash);
+		}
+
+		_getProfile(key = 'profiles') {
+			console.log('_getProfile', key);
+			ipcRenderer.send('get-profile-async', key);
 		}
 
 		_stringify(msg) {
