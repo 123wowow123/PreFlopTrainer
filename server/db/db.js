@@ -19,9 +19,12 @@ module.exports = (function() {
 			// Load the db
 			db = new SQL.Database(filebuffer);
 			//var sqlstr = "CREATE TABLE PreFlopImage (id nvarchar, imagePath nvarchar);"; ////////////////
+			//var sqlstr = "CREATE TABLE Profile (id nvarchar, profileString nvarchar);";
+			//db.run(sqlstr);
 		} else {
 			db = new SQL.Database();
 			var sqlstr = "CREATE TABLE PreFlopImage (id nvarchar, imagePath nvarchar);";
+			sqlstr += "CREATE TABLE Profile (id nvarchar, profileString nvarchar);";
 			db.run(sqlstr);
 		}
 

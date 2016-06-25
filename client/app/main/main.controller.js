@@ -51,14 +51,8 @@ const {
 				'CO': 2,
 			};
 
-			that.profiles = [{
-				"name": "Agressive"
-			}, {
-				"name": "Violent"
-			}, {
-				"name": "Bloodshed"
-			}];
-
+			that.profiles = [];
+			that._getProfile();
 			that.combinationChanged();
 		}
 
@@ -71,7 +65,7 @@ const {
 				that.profiles = data;
 				that._setProfile({
 					key: 'profiles',
-					value: JSON.stringify(data)
+					value: angular.toJson(data)
 				});
 				//just persist data
 			}

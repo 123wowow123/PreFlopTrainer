@@ -12,7 +12,7 @@ module.exports = (function(){
   }
 
   self.updateProfile = function(db, key, profileString){
-    var stmt = db.prepare("UPDATE Profile SET value = :profileString WHERE id = :key");
+    var stmt = db.prepare("UPDATE Profile SET profileString = :profileString WHERE id = :key");
     stmt.bind({
       ':key': key,
       ':profileString': profileString

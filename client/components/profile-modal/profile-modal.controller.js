@@ -14,7 +14,7 @@ class ProfileModalController {
 		if (!(profileName = profileName.trim())) {
 			return;
 		}
-		profiles.push(profileName);
+		profiles.push({name: profileName});
 		this._clearProfileName();
 	};
 	removeProfile(profiles, profile) {
