@@ -43,3 +43,7 @@ add grunt scss watch
 when profile is deleted, images will all be removed
 
 error handling
+
+
+Update PreFlopImage
+Set id = replace( id, '}', ',"profile":{"name":"100BB"}}' )
