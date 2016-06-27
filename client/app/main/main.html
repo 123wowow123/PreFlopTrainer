@@ -35,11 +35,11 @@
 					<div class="col-lg-8">
 						<div class="btn-group pull-right" uib-dropdown>
 							<button id="btn-append-to-single-button" type="button" class="btn btn-primary btn-xs" uib-dropdown-toggle>
-								Profiles
+								{{vm.combination.profile.name}}
 								<span class="caret"></span>
 							</button>
 							<ul class="dropdown-menu" uib-dropdown-menu role="menu" aria-labelledby="btn-append-to-single-button">
-								<li role="menuitem" ng-repeat="p in vm.profiles"><a >{{p.name}}</a></li>
+								<li role="menuitem" ng-click="vm.profileClick(p)" ng-repeat="p in vm.profiles"><a >{{p.name}}</a></li>
 								<li class="divider"></li>
 								<li role="menuitem"><a ng-click="vm.profileOpen()">Edit</a></li>
 							</ul>

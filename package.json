@@ -1,8 +1,9 @@
 {
   "name": "prefloptrainer",
   "productName": "Prefloptrainer",
-  "version": "0.0.0",
-  "description": "My splendid app",
+  "company": "wowow",
+  "version": "1.0.0",
+  "description": "Preflop Trainer App",
   "license": "MIT",
   "main": "server",
   "repository": "123wowow123/prefloptrainer",

@@ -7,7 +7,6 @@ class ProfileModalController {
     this.selected = null;
 		this.profiles = profiles;
 		this.$uibModalInstance = $uibModalInstance;
-
 	}
 
 	addProfile(profiles, profileName) { //pass in param for profiles and new name

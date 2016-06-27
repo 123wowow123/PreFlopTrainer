@@ -31,10 +31,8 @@ MIT © [123wowow123](http://n/A)
 
 ## ToDo
 save db on exit or on image save
-DELETE file on duplicate uploads or upsert
 
 border around selected button
-disable buttons that are not possible
 
 add uploads folder on build
 
@@ -42,6 +40,6 @@ build out add and remove image async path
 
 add grunt scss watch
 
-set min and max width and height
+when profile is deleted, images will all be removed
 
-fix folder path so that it not absolute from root but relative from app
+error handling

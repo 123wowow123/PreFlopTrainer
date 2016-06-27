@@ -31,16 +31,19 @@ const {
 			ipcRenderer.on('get-profile-async-response', (event, arg) => {
 				var response = JSON.parse(arg);
 				console.log('get-profile-async-response', arg); // prints "pong"
-				$scope.$apply(function() {
-					that.profiles = JSON.parse(response.profileString);
-				});
+
+				that.profiles = JSON.parse(response.profileString);
+				if (!that.combination.profile) {
+					that.combination.profile = that.profiles[0];
+				}
+				that.combinationChanged();
 			});
 
 			//setup default selections
 			that.combination.raiseSize = 2;
 			that.combination.RFI = 'Hero';
 			that.combination.heroPosition = 'UTG';
-			that.combination.villainPosition = null;
+			that.combination.villainPosition = undefined;
 
 			that.posDef = {
 				'BTN': 3,
@@ -63,13 +66,19 @@ const {
 
 			function ok(data) {
 				that.profiles = data;
+				if (!that.combination.profile) {
+					that.combination.profile =  that.profiles[0];
+				}
 				that._setProfile({
 					key: 'profiles',
 					value: angular.toJson(data)
 				});
-				//just persist data
 			}
-		};
+		}
+
+		profileClick(profile) {
+			this.combination.profile = profile
+		}
 
 		//need to revisite for new cases with Frank
 		positionEqualAfter(before, after) {
@@ -118,7 +127,7 @@ const {
 
 		RFIChanged() {
 			if (this.impossibleVillain(this.combination.villainPosition)) {
-				this.combination.villainPosition = null;
+				this.combination.villainPosition = undefined;
 			}
 			this._autoSelect();
 		}
@@ -173,15 +182,10 @@ const {
 		}
 
 		_stringify(msg) {
-			return JSON.stringify(msg, this._replacerIgnoreNull);
+			//return JSON.stringify(msg, this._replacerIgnoreNull);
+			return angular.toJson(msg);
 		}
 
-		_replacerIgnoreNull(key, value) {
-			if (value === null) {
-				return undefined;
-			}
-			return value;
-		}
 	}
 
 	angular.module('pokertrainerwebApp')

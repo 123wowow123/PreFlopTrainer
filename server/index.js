@@ -1,4 +1,5 @@
 'use strict';
+const packageJSON = require('../package.json');
 const electron = require('electron');
 const path = require('path');
 
@@ -17,12 +18,11 @@ console.log('dbPath', dbPath);
 // report crashes to the Electron project
 const crashReporter = require('electron').crashReporter;
 crashReporter.start({
-	productName: 'YourName',
-	companyName: 'YourCompany',
+	productName: packageJSON.productName,
+	companyName: packageJSON.company,
 	submitURL: 'https://your-domain.com/url-to-submit',
 	autoSubmit: false
 });
-
 // adds debug features like hotkeys for triggering dev tools and reload
 require('electron-debug')();
 
@@ -39,6 +39,7 @@ function onClosed() {
 }
 
 function createMainWindow() {
+
 	const win = new electron.BrowserWindow({
 		width: 1225,
 		height: 850,

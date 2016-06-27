@@ -21,7 +21,7 @@ angular.module('pokertrainerwebApp')
 				scope: modalScope,
 				resolve: {
 					profiles: function() {            
-						return profiles || [];        
+						return angular.copy(profiles) || [];        
 					}
 				}
 			});
