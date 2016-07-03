@@ -54,6 +54,13 @@ const {
 				'CO': 2,
 			};
 
+			$scope.$watch(function(){return that.combination.villainPosition},
+				function(newValue, oldValue) {
+					if (newValue === null) {
+						that.combination.villainPosition = undefined;
+					}
+				});
+
 			that.profiles = [];
 			that._getProfile();
 			that.combinationChanged();
@@ -67,7 +74,7 @@ const {
 			function ok(data) {
 				that.profiles = data;
 				if (!that.combination.profile) {
-					that.combination.profile =  that.profiles[0];
+					that.combination.profile = that.profiles[0];
 				}
 				that._setProfile({
 					key: 'profiles',
